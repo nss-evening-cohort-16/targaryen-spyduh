@@ -1,6 +1,6 @@
 namespace SpyDuh.Models
 {
-    public class Spies
+    public class Spy
     {
         public string CodeName { get; set; }
         public Dictionary<string, double> SkillsAndServices { get; set; }

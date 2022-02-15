@@ -4,9 +4,9 @@ namespace SpyDuh.DataAccess
 {
     public class SpyRepository
     {
-        private static List<Spies> _spies = new List<Spies>()
+        private static List<Spy> _spies = new List<Spy>()
         {
-            new Spies()
+            new Spy()
             {
                 CodeName = "Ivan",
                 SkillsAndServices = new Dictionary<string, double>
@@ -19,7 +19,7 @@ namespace SpyDuh.DataAccess
                 OriginStory = "From Soviet Era Russia",
                 Relationship = SpyRelationship.Friend
             },
-            new Spies()
+            new Spy()
             {
                 CodeName = "Golden Eye",
                 SkillsAndServices = new Dictionary<string, double>
@@ -32,7 +32,7 @@ namespace SpyDuh.DataAccess
                 OriginStory = "Born by the bullet",
                 Relationship = SpyRelationship.Friend
             },
-            new Spies()
+            new Spy()
             {
                 CodeName = "Mike",
                 SkillsAndServices = new Dictionary<string, double>
@@ -46,5 +46,16 @@ namespace SpyDuh.DataAccess
                 Relationship = SpyRelationship.Enemy
             },
         };
+
+        internal object GetByName(string name)
+        {
+            var match = _spies.FirstOrDefault(s => s.CodeName == name);
+            return match;
+        }
+
+        internal List<Spy> GetAll()
+        {
+            return _spies;
+        }
     }
 }
