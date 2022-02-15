@@ -74,5 +74,10 @@ namespace SpyDuh.DataAccess
             var matchFriends = _spies.Where(s => s.Relationship == SpyRelationship.Friend);
             return matchFriends;
         }
+
+        internal void Post(Spy newSpy)
+        {
+            _spies.Add(newSpy);
+        }
     }
 }
