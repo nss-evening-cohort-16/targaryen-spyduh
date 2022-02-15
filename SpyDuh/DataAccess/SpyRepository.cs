@@ -59,6 +59,12 @@ namespace SpyDuh.DataAccess
             return match;
         }
 
+        internal object GetEnemies()
+        {
+            var matchingEnemies = _spies.Where(s => s.Relationship == SpyRelationship.Enemy);
+            return matchingEnemies;
+        }
+
         internal List<Spy> GetAll()
         {
             return _spies;
