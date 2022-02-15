@@ -28,5 +28,18 @@ namespace SpyDuh.Controllers
 
             return Ok(match);
         }
+        [HttpGet("relationship/{spyRelationship")]
+        public IActionResult GetSpyByRelationship(SpyRelationship spyRelationship)
+        {
+            var matches = _repo.GetByRelationship(spyRelationship);
+            if (matches != null)
+            {
+                return Ok(matches);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }

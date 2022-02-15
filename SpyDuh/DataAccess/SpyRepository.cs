@@ -46,7 +46,6 @@ namespace SpyDuh.DataAccess
                 Relationship = SpyRelationship.Enemy
             },
         };
-
         internal object GetByName(string name)
         {
             var match = _spies.FirstOrDefault(s => s.CodeName == name);
@@ -56,6 +55,11 @@ namespace SpyDuh.DataAccess
         internal List<Spy> GetAll()
         {
             return _spies;
+        }
+        internal IEnumerable<Spy> GetByRelationship(SpyRelationship spyRelationship)
+        {
+            var matchingForFriends = _spies.Where(spies => spies.Relationship == spyRelationship);
+            return matchingForFriends;
         }
     }
 }
