@@ -39,5 +39,17 @@ namespace SpyDuh.Controllers
 
             return Ok(match);
         }
+
+        [HttpGet("relationship/{enemy}")]
+        public IActionResult GetSpyEnemies()
+        {
+            var match = _repo.GetEnemies();
+            if (match == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(match);
+        }
     }
 }
