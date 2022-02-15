@@ -17,7 +17,34 @@ namespace SpyDuh.DataAccess
                     }
                 },
                 OriginStory = "From Soviet Era Russia",
-            }
+                Relationship = SpyRelationship.Friend
+            },
+            new Spies()
+            {
+                CodeName = "Golden Eye",
+                SkillsAndServices = new Dictionary<string, double>
+                {
+                    {
+                        "Marksmenship",
+                        15000.99
+                    }
+                },
+                OriginStory = "Born by the bullet",
+                Relationship = SpyRelationship.Friend
+            },
+            new Spies()
+            {
+                CodeName = "Mike",
+                SkillsAndServices = new Dictionary<string, double>
+                {
+                    {
+                        "Brute Force",
+                        5000.99
+                    }
+                },
+                OriginStory = "Born From A Mobster",
+                Relationship = SpyRelationship.Enemy
+            },
         };
     }
 }
