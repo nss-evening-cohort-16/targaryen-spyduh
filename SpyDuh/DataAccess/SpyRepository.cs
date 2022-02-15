@@ -47,10 +47,22 @@ namespace SpyDuh.DataAccess
             },
         };
 
+        internal object GetBySkill(string skill)
+        {
+            var matches = _spies.Where(s => s.SkillsAndServices.ContainsKey(skill));
+            return matches;
+        }
+
         internal object GetByName(string name)
         {
             var match = _spies.FirstOrDefault(s => s.CodeName == name);
             return match;
+        }
+
+        internal object GetEnemies()
+        {
+            var matchingEnemies = _spies.Where(s => s.Relationship == SpyRelationship.Enemy);
+            return matchingEnemies;
         }
 
         internal List<Spy> GetAll()
