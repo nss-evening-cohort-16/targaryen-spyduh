@@ -6,22 +6,45 @@ namespace SpyDuh.DataAccess
     {
         private static List<Spies> _spies = new List<Spies>()
         {
-            new Spy()
+            new Spies()
             {
-                CodeName = "albert",
-                OriginStory = "revenge",
-            }
+                CodeName = "Ivan",
+                SkillsAndServices = new Dictionary<string, double>
+                {
+                    {
+                        "Stealth",
+                        1000.99
+                    }
+                },
+                OriginStory = "From Soviet Era Russia",
+                Relationship = SpyRelationship.Friend
+            },
+            new Spies()
+            {
+                CodeName = "Golden Eye",
+                SkillsAndServices = new Dictionary<string, double>
+                {
+                    {
+                        "Marksmenship",
+                        15000.99
+                    }
+                },
+                OriginStory = "Born by the bullet",
+                Relationship = SpyRelationship.Friend
+            },
+            new Spies()
+            {
+                CodeName = "Mike",
+                SkillsAndServices = new Dictionary<string, double>
+                {
+                    {
+                        "Brute Force",
+                        5000.99
+                    }
+                },
+                OriginStory = "Born From A Mobster",
+                Relationship = SpyRelationship.Enemy
+            },
         };
-
-        internal object GetByName(string name)
-        {
-            var match = _spies.FirstOrDefault(s => s.CodeName == name);
-            return match;
-        }
-
-        internal List<Spy> GetAll()
-        {
-            return _spies;
-        }
     }
 }
