@@ -69,5 +69,10 @@ namespace SpyDuh.DataAccess
         {
             return _spies;
         }
+        internal object GetFriends()
+        {
+            var matchFriends = _spies.Where(s => s.Relationship == SpyRelationship.Friend);
+            return matchFriends;
+        }
     }
 }
