@@ -9,18 +9,18 @@ namespace SpyDuh.Controllers
     [ApiController]
     public class SpiesController : ControllerBase
     {
-        SpiesRepository _spies = new SpiesRepository();
+        SpyRepository _repo = new SpyRepository();
 
         [HttpGet]
-        public List<Spy> GetAllSpies()
+        public List<Spies> GetAllSpies()
         {
-            return _spies.GetAll();
+            return _repo.GetAll();
         }
 
         [HttpGet("name/{name}")]
         public IActionResult GetSpyByName(string name)
         {
-            var match = _spies.GetSpyByName(name);
+            var match = _repo.GetByName(name);
             if (match == null)
             {
                 return NotFound();
