@@ -12,7 +12,7 @@ namespace SpyDuh.Controllers
         SpyRepository _repo = new SpyRepository();
 
         [HttpGet]
-        public List<Spies> GetAllSpies()
+        public List<Spy> GetAllSpies()
         {
             return _repo.GetAll();
         }
