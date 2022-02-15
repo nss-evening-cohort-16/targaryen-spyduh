@@ -31,7 +31,7 @@ namespace SpyDuh.Controllers
         [HttpGet("skill/{skill}")]
         public IActionResult GetSpyBySkill(string skill)
         {
-            var match = _repo.GetBySkill(skill);
+            var match = _spyRepo.GetBySkill(skill);
             if (match == null)
             {
                 return NotFound();
@@ -43,7 +43,7 @@ namespace SpyDuh.Controllers
         [HttpGet("relationship/{enemy}")]
         public IActionResult GetSpyEnemies()
         {
-            var match = _repo.GetEnemies();
+            var match = _spyRepo.GetEnemies();
             if (match == null)
             {
                 return NotFound();
