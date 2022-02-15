@@ -9,24 +9,68 @@ namespace SpyDuh.Controllers
     [ApiController]
     public class SpiesController : ControllerBase
     {
-        SpyRepository _repo = new SpyRepository();
+        SpyRepository _spyRepo = new SpyRepository();
 
         [HttpGet]
         public List<Spy> GetAllSpies()
         {
-            return _repo.GetAll();
+            return _spyRepo.GetAll();
         }
 
         [HttpGet("name/{name}")]
         public IActionResult GetSpyByName(string name)
         {
-            var match = _repo.GetByName(name);
+            var match = _spyRepo.GetByName(name);
             if (match == null)
             {
                 return NotFound();
             }
 
             return Ok(match);
+        }
+
+        [HttpPost]
+        public IActionResult Post(Spy newSpy)
+        {
+            if (!ValidNewSpy(newSpy))
+            {
+                return BadRequest(newSpy);
+            }
+            else
+            {
+                _spyRepo.Post(newSpy);
+                return Ok(newSpy);
+            }
+        }
+
+        private bool ValidNewSpy(Spy newSpy)
+        {
+            if (newSpy == null)
+            {
+                return false;
+            }
+            if (newSpy.CodeName == null)
+            {
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(newSpy.CodeName))
+            {
+                return false;
+            }
+            if (newSpy.SkillsAndServices == null)
+            {
+                return false;
+            }
+            if (newSpy.OriginStory == null)
+            {
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(newSpy.OriginStory))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

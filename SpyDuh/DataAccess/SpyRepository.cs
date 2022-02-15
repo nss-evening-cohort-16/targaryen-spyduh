@@ -57,5 +57,10 @@ namespace SpyDuh.DataAccess
         {
             return _spies;
         }
+
+        internal void Post(Spy newSpy)
+        {
+            _spies.Add(newSpy);
+        }
     }
 }
