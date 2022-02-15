@@ -28,5 +28,16 @@ namespace SpyDuh.Controllers
 
             return Ok(match);
         }
+        [HttpGet("skill/{skill}")]
+        public IActionResult GetSpyBySkill(string skill)
+        {
+            var match = _repo.GetBySkill(skill);
+            if (match == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(match);
+        }
     }
 }
