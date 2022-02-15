@@ -52,5 +52,16 @@ namespace SpyDuh.DataAccess
             var matches = _spies.Where(s => s.SkillsAndServices.ContainsKey(skill));
             return matches;
         }
+
+        internal object GetByName(string name)
+        {
+            var match = _spies.FirstOrDefault(s => s.CodeName == name);
+            return match;
+        }
+
+        internal List<Spy> GetAll()
+        {
+            return _spies;
+        }
     }
 }
