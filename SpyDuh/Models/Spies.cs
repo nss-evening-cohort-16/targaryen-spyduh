@@ -5,6 +5,12 @@ namespace SpyDuh.Models
         public string CodeName { get; set; }
         public Dictionary<string, double> SkillsAndServices { get; set; }
         public string OriginStory { get; set; }
-        public bool Enemy { get; set; }
+        public SpyRelationship Relationship { get; set; }
+    }
+
+    public enum SpyRelationship
+    {
+        Friend,
+        Enemy
     }
 }
