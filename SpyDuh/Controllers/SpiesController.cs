@@ -28,6 +28,29 @@ namespace SpyDuh.Controllers
 
             return Ok(match);
         }
+        [HttpGet("skill/{skill}")]
+        public IActionResult GetSpyBySkill(string skill)
+        {
+            var match = _repo.GetBySkill(skill);
+            if (match == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(match);
+        }
+
+        [HttpGet("relationship/{enemy}")]
+        public IActionResult GetSpyEnemies()
+        {
+            var match = _repo.GetEnemies();
+            if (match == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(match);
+        }
         [HttpGet("relationship/{friend}")]
         public IActionResult GetSpyFriends()
         {
