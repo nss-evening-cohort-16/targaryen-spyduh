@@ -28,18 +28,16 @@ namespace SpyDuh.Controllers
 
             return Ok(match);
         }
-        [HttpGet("relationship/{spyRelationship")]
-        public IActionResult GetSpyByRelationship(SpyRelationship spyRelationship)
+        [HttpGet("relationship/{friend}")]
+        public IActionResult GetSpyFriends()
         {
-            var matches = _repo.GetByRelationship(spyRelationship);
-            if (matches != null)
-            {
-                return Ok(matches);
-            }
-            else
+            var match = _repo.GetFriends();
+            if (match == null)
             {
                 return NotFound();
             }
+
+            return Ok(match);
         }
     }
 }

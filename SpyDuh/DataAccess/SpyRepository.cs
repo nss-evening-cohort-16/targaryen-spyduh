@@ -56,10 +56,10 @@ namespace SpyDuh.DataAccess
         {
             return _spies;
         }
-        internal IEnumerable<Spy> GetByRelationship(SpyRelationship spyRelationship)
+        internal object GetFriends()
         {
-            var matchingForFriends = _spies.Where(spies => spies.Relationship == spyRelationship);
-            return matchingForFriends;
+            var matchFriends = _spies.Where(s => s.Relationship == SpyRelationship.Friend);
+            return matchFriends;
         }
     }
 }
