@@ -12,7 +12,7 @@ namespace SpyDuh.Controllers
         SpyRepository _repo = new SpyRepository();
 
         [HttpGet]
-        public List<Spies> GetAllSpies()
+        public List<Spy> GetAllSpies()
         {
             return _repo.GetAll();
         }
@@ -21,6 +21,17 @@ namespace SpyDuh.Controllers
         public IActionResult GetSpyByName(string name)
         {
             var match = _repo.GetByName(name);
+            if (match == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(match);
+        }
+        [HttpGet("skill/{skill}")]
+        public IActionResult GetSpyBySkill(string skill)
+        {
+            var match = _repo.GetBySkill(skill);
             if (match == null)
             {
                 return NotFound();
