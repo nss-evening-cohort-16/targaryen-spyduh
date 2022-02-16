@@ -49,8 +49,25 @@ namespace SpyDuh.Controllers
             {
                 return Ok(matches);
             }
+            else
+            {
+                return NotFound();
+            }
+        }
 
-            return Ok(spyRelationship);
+        [HttpGet("{name}/{spyRelationship}")]
+
+        public IActionResult GetFriendOfFriend(string name, SpyRelationship spyRelationship)
+        {
+            var matches = _spyRepo.GetFriendsOfFriends(name, spyRelationship);
+            if (matches != null)
+            {
+                return Ok(matches);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         [HttpPost]

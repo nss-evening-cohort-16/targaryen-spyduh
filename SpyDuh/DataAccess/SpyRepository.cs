@@ -85,6 +85,14 @@ namespace SpyDuh.DataAccess
             return matchSkills;
         }
 
+        internal object GetFriendsOfFriends(string name, SpyRelationship spyRelationship)
+        {
+            var matchingSpy = _spies.FirstOrDefault(s => s.CodeName == name);
+            var friends = _spies.Where(matchingSpy => matchingSpy.Relationship == spyRelationship);
+            var friendsOrEnemies = friends.Where(s => s.CodeName != name);
+            return friendsOrEnemies;
+        }
+
         internal object GetDaysLeft(string name)
         {
             var match = _spies.FirstOrDefault(s => s.CodeName == name);
