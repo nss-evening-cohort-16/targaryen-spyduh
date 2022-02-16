@@ -47,6 +47,16 @@ namespace SpyDuh.DataAccess
             },
         };
 
+        internal object DeleteSkill(string name, string skill)
+        {
+            var match = _spies.FirstOrDefault(s => s.CodeName == name);
+            var matchSkills = match.SkillsAndServices;
+
+            matchSkills.Remove(skill);
+
+            return match;
+        }
+
         internal object GetBySkill(string skill)
         {
             var matches = _spies.Where(s => s.SkillsAndServices.ContainsKey(skill));

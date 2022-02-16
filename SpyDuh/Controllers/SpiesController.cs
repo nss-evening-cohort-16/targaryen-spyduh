@@ -50,16 +50,7 @@ namespace SpyDuh.Controllers
                 return Ok(matches);
             }
 
-            return Ok(match);
-        }
-        [HttpGet("relationship/{friend}")]
-        public IActionResult GetSpyFriends()
-        {
-            var match = _repo.GetFriends();
-            if (match == null)
-            {
-                return NotFound();
-            }
+            return Ok(matches);
         }
 
         [HttpPost]
@@ -110,6 +101,18 @@ namespace SpyDuh.Controllers
         public IActionResult GetProfile(string profile)
         {
             var match = _spyRepo.GetProfile(profile);
+            if (match == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(match);
+        }
+
+        [HttpDelete("profile/{name}/{skill}")]
+        public IActionResult DeleteASkill(string name, string skill)
+        {
+            var match = _spyRepo.DeleteSkill(name, skill);
             if (match == null)
             {
                 return NotFound();
