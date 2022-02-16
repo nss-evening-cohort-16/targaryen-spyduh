@@ -50,16 +50,7 @@ namespace SpyDuh.Controllers
                 return Ok(matches);
             }
 
-            return Ok(match);
-        }
-        [HttpGet("relationship/{friend}")]
-        public IActionResult GetSpyFriends()
-        {
-            var match = _repo.GetFriends();
-            if (match == null)
-            {
-                return NotFound();
-            }
+            return Ok(spyRelationship);
         }
 
         [HttpPost]
@@ -117,6 +108,16 @@ namespace SpyDuh.Controllers
                 return NotFound();
             }
 
+            return Ok(match);
+        }
+        [HttpGet("days/{days}")]
+        public IActionResult GetDaysLeft(string days)
+        {
+            var match = _spyRepo.GetDaysLeft(days);
+            if (match == null)
+            {
+                return NotFound();
+            }
             return Ok(match);
         }
     }
