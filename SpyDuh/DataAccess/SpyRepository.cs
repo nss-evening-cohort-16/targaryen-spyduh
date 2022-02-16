@@ -81,5 +81,11 @@ namespace SpyDuh.DataAccess
             var matchSkills = match.SkillsAndServices;
             return matchSkills;
         }
+
+        internal void Update(var updatedSpy)
+        {
+            //var index = _spies.FindIndex(s => s == oldSpy);
+            _spies.Add(updatedSpy);
+        }
     }
 }

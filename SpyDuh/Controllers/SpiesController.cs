@@ -108,5 +108,21 @@ namespace SpyDuh.Controllers
 
             return Ok(match);
         }
+
+        [HttpPatch("{name}")]
+        public IActionResult UpdateSpy(string name)
+        {
+            var oldSpy = _spyRepo.GetByName(name);
+            if (oldSpy == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                //[HttpPost]
+                _spyRepo.Add(oldSpy);
+                return Ok(oldSpy);
+            }
+        }
     }
 }
