@@ -81,5 +81,13 @@ namespace SpyDuh.DataAccess
             var matchSkills = match.SkillsAndServices;
             return matchSkills;
         }
+
+        internal object GetFriendsOfFriends(string name, SpyRelationship spyRelationship)
+        {
+            var matchingSpy = _spies.FirstOrDefault(s => s.CodeName == name);
+            var friends = _spies.Where(matchingSpy => matchingSpy.Relationship == spyRelationship);
+            var friendsOrEnemies = friends.Where(s => s.CodeName != name);
+            return friendsOrEnemies;
+        }
     }
 }
