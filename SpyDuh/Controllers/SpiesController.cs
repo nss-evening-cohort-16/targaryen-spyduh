@@ -67,8 +67,6 @@ namespace SpyDuh.Controllers
             }
         }
 
-        [HttpGet]
-
         private bool ValidNewSpy(Spy newSpy)
         {
             if (newSpy == null)
