@@ -17,7 +17,8 @@ namespace SpyDuh.DataAccess
                     }
                 },
                 OriginStory = "From Soviet Era Russia",
-                Relationship = SpyRelationship.Friend
+                Relationship = SpyRelationship.Friend,
+                DaysLeft = 20
             },
             new Spy()
             {
@@ -30,7 +31,8 @@ namespace SpyDuh.DataAccess
                     }
                 },
                 OriginStory = "Born by the bullet",
-                Relationship = SpyRelationship.Friend
+                Relationship = SpyRelationship.Friend,
+                DaysLeft = 1
             },
             new Spy()
             {
@@ -43,7 +45,8 @@ namespace SpyDuh.DataAccess
                     }
                 },
                 OriginStory = "Born From A Mobster",
-                Relationship = SpyRelationship.Enemy
+                Relationship = SpyRelationship.Enemy,
+                DaysLeft = 170
             },
         };
 
@@ -98,6 +101,13 @@ namespace SpyDuh.DataAccess
             var friends = _spies.Where(matchingSpy => matchingSpy.Relationship == spyRelationship);
             var friendsOrEnemies = friends.Where(s => s.CodeName != name);
             return friendsOrEnemies;
+        }
+
+        internal object GetDaysLeft(string name)
+        {
+            var match = _spies.FirstOrDefault(s => s.CodeName == name);
+            var matchDays = match.DaysLeft;
+            return matchDays;
         }
     }
 }
