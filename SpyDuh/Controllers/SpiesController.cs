@@ -54,7 +54,7 @@ namespace SpyDuh.Controllers
         [HttpGet("relationship/{friend}")]
         public IActionResult GetSpyFriends()
         {
-            var match = _repo.GetFriends();
+            var match = _spyRepo.GetFriends();
             if (match == null)
             {
                 return NotFound();
