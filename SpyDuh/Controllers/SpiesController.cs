@@ -125,5 +125,15 @@ namespace SpyDuh.Controllers
 
             return Ok(match);
         }
+        [HttpGet("days/{days}")]
+        public IActionResult GetDaysLeft(string days)
+        {
+            var match = _spyRepo.GetDaysLeft(days);
+            if (match == null)
+            {
+                return NotFound();
+            }
+            return Ok(match);
+        }
     }
 }
