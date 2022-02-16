@@ -49,8 +49,25 @@ namespace SpyDuh.Controllers
             {
                 return Ok(matches);
             }
+            else
+            {
+                return NotFound();
+            }
+        }
 
-            return Ok(matches);
+        [HttpGet("{name}/{spyRelationship}")]
+
+        public IActionResult GetFriendOfFriend(string name, SpyRelationship spyRelationship)
+        {
+            var matches = _spyRepo.GetFriendsOfFriends(name, spyRelationship);
+            if (matches != null)
+            {
+                return Ok(matches);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         [HttpPost]
@@ -107,22 +124,6 @@ namespace SpyDuh.Controllers
             }
 
             return Ok(match);
-        }
-
-        [HttpPatch("{name}")]
-        public IActionResult UpdateSpy(string name)
-        {
-            var oldSpy = _spyRepo.GetByName(name);
-            if (oldSpy == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                //[HttpPost]
-                _spyRepo.Add(oldSpy);
-                return Ok(oldSpy);
-            }
         }
     }
 }
