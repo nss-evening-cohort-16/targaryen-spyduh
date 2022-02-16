@@ -100,10 +100,10 @@ namespace SpyDuh.DataAccess
             return matchDays;
         }
 
-        internal void Update(var updatedSpy)
+        internal void Update(Spy updatedSpy)
         {
-            //var index = _spies.FindIndex(s => s == oldSpy);
-            _spies.Add(updatedSpy);
+            var index = _spies.FindIndex(s => s.CodeName == updatedSpy.CodeName);
+            _spies[index] = updatedSpy;
         }
     }
 }
