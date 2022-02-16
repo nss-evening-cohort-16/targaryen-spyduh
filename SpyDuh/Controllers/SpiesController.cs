@@ -40,15 +40,23 @@ namespace SpyDuh.Controllers
             return Ok(match);
         }
 
-        [HttpGet("relationship/{enemy}")]
-        public IActionResult GetSpyEnemies()
+        [HttpGet("relationship/{spyRelationship}")]
+
+        public IActionResult GetRelationshipByType(SpyRelationship spyRelationship)
         {
-            var match = _spyRepo.GetEnemies();
-            if (match == null)
+            var matches = _spyRepo.GetRelationshipType(spyRelationship);
+            if (matches != null)
             {
-                return NotFound();
+                return Ok(matches);
             }
-            else
+
+            return Ok(match);
+        }
+        [HttpGet("relationship/{friend}")]
+        public IActionResult GetSpyFriends()
+        {
+            var match = _repo.GetFriends();
+            if (match == null)
             {
                 return NotFound();
             }
