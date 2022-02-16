@@ -86,7 +86,8 @@ namespace SpyDuh.DataAccess
         {
             var matchingSpy = _spies.FirstOrDefault(s => s.CodeName == name);
             var friends = _spies.Where(matchingSpy => matchingSpy.Relationship == spyRelationship);
-            return friends;
+            var friendsOrEnemies = friends.Where(s => s.CodeName != name);
+            return friendsOrEnemies;
         }
     }
 }
