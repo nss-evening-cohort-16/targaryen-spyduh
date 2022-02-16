@@ -106,5 +106,17 @@ namespace SpyDuh.Controllers
 
             return true;
         }
+
+        [HttpGet("profile/{profile}")]
+        public IActionResult GetProfile(string profile)
+        {
+            var match = _spyRepo.GetProfile(profile);
+            if (match == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(match);
+        }
     }
 }
