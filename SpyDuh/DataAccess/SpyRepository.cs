@@ -74,5 +74,12 @@ namespace SpyDuh.DataAccess
         {
             _spies.Add(newSpy);
         }
+
+        internal object GetProfile(string name)
+        {
+            var match = _spies.FirstOrDefault(s => s.CodeName == name);
+            var matchSkills = match.SkillsAndServices;
+            return matchSkills;
+        }
     }
 }
