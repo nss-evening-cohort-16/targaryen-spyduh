@@ -99,5 +99,11 @@ namespace SpyDuh.DataAccess
             var matchDays = match.DaysLeft;
             return matchDays;
         }
+
+        internal void DeleteSpy(Spy spy)
+        {
+            var match = _spies.FirstOrDefault(s => s.CodeName == spy.CodeName);
+            _spies.Remove(match);
+        }
     }
 }
