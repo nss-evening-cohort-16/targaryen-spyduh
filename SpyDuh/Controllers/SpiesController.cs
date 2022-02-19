@@ -125,15 +125,15 @@ namespace SpyDuh.Controllers
 
             return Ok(match);
         }
-        [HttpPut("name/{name}")]
-        public IActionResult UpdateSpy(string name, Spy spy)
+        [HttpPut("{id}")]
+        public IActionResult UpdateSpy(int id, Spy spy)
         {
-            if (name != spy.CodeName)
+            if (id != spy.Id)
             {
                 return BadRequest();
             }
 
-            var existingSpy = _spyRepo.GetByName(name);
+            var existingSpy = _spyRepo.GetById(id);
             if (existingSpy == null)
             {
                 return NotFound();
