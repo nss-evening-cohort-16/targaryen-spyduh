@@ -109,6 +109,12 @@ namespace SpyDuh.DataAccess
             return matchDays;
         }
 
+        internal void DeleteSpy(Spy spy)
+        {
+            var match = _spies.FirstOrDefault(s => s.CodeName == spy.CodeName);
+            _spies.Remove(match);
+        }
+
         internal void Update(Spy updatedSpy)
         {
             var index = _spies.FindIndex(s => s.Id == updatedSpy.Id);
