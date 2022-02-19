@@ -18,7 +18,8 @@ namespace SpyDuh.DataAccess
                 },
                 OriginStory = "From Soviet Era Russia",
                 Relationship = SpyRelationship.Friend,
-                DaysLeft = 20
+                DaysLeft = 20,
+                Id = 1
             },
             new Spy()
             {
@@ -32,7 +33,8 @@ namespace SpyDuh.DataAccess
                 },
                 OriginStory = "Born by the bullet",
                 Relationship = SpyRelationship.Friend,
-                DaysLeft = 1
+                DaysLeft = 1,
+                Id = 2
             },
             new Spy()
             {
@@ -46,7 +48,8 @@ namespace SpyDuh.DataAccess
                 },
                 OriginStory = "Born From A Mobster",
                 Relationship = SpyRelationship.Enemy,
-                DaysLeft = 170
+                DaysLeft = 170,
+                Id = 3
             },
         };
 
@@ -59,6 +62,12 @@ namespace SpyDuh.DataAccess
         internal object GetByName(string name)
         {
             var match = _spies.FirstOrDefault(s => s.CodeName == name);
+            return match;
+        }
+
+        internal object GetById(int id)
+        {
+            var match = _spies.Where(s => s.Id == id);
             return match;
         }
 
@@ -104,6 +113,12 @@ namespace SpyDuh.DataAccess
         {
             var match = _spies.FirstOrDefault(s => s.CodeName == spy.CodeName);
             _spies.Remove(match);
+        }
+
+        internal void Update(Spy updatedSpy)
+        {
+            var index = _spies.FindIndex(s => s.Id == updatedSpy.Id);
+            _spies[index] = updatedSpy;
         }
     }
 }

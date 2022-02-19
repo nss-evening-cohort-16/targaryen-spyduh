@@ -127,15 +127,24 @@ namespace SpyDuh.Controllers
 
             return Ok(match);
         }
-        [HttpGet("days/{days}")]
-        public IActionResult GetDaysLeft(string days)
+        [HttpPut("{id}")]
+        public IActionResult UpdateSpy(int id, Spy spy)
         {
-            var match = _spyRepo.GetDaysLeft(days);
-            if (match == null)
+            if (id != spy.Id)
+            {
+                return BadRequest();
+            }
+
+            var existingSpy = _spyRepo.GetById(id);
+            if (existingSpy == null)
             {
                 return NotFound();
             }
-            return Ok(match);
+            else
+            {
+                _spyRepo.Update(spy);
+                return NoContent();
+            }
         }
 
         [HttpDelete("name/{name}")]
