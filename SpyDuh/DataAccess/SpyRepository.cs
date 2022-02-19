@@ -50,16 +50,6 @@ namespace SpyDuh.DataAccess
             },
         };
 
-        internal object DeleteSkill(string name, string skill)
-        {
-            var match = _spies.FirstOrDefault(s => s.CodeName == name);
-            var matchSkills = match.SkillsAndServices;
-
-            matchSkills.Remove(skill);
-
-            return match;
-        }
-
         internal object GetBySkill(string skill)
         {
             var matches = _spies.Where(s => s.SkillsAndServices.ContainsKey(skill));
@@ -108,6 +98,12 @@ namespace SpyDuh.DataAccess
             var match = _spies.FirstOrDefault(s => s.CodeName == name);
             var matchDays = match.DaysLeft;
             return matchDays;
+        }
+
+        internal void DeleteSpy(Spy spy)
+        {
+            var match = _spies.FirstOrDefault(s => s.CodeName == spy.CodeName);
+            _spies.Remove(match);
         }
     }
 }

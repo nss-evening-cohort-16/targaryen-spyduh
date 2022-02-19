@@ -68,9 +68,9 @@ namespace SpyDuh.Controllers
             {
                 return NotFound();
             }
-        }
             return Ok(matches);
         }
+        
 
         [HttpPost]
         public IActionResult Post(Spy newSpy)
@@ -138,16 +138,19 @@ namespace SpyDuh.Controllers
             return Ok(match);
         }
 
-        [HttpDelete("profile/{name}/{skill}")]
-        public IActionResult DeleteASkill(string name, string skill)
+        [HttpDelete("name/{name}")]
+        public IActionResult DeleteASpy(string name)
         {
-            var match = _spyRepo.DeleteSkill(name, skill);
-            if (match == null)
+            var matchingSpy = _spyRepo.GetByName(name);
+            if (matchingSpy == null)
             {
                 return NotFound();
             }
-
-            return Ok(match);
+            else
+            {
+                _spyRepo.DeleteSpy((Spy)matchingSpy);
+                return NoContent();
+            }
         }
     }
 }
